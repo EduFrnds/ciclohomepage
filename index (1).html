@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eduardo Fernandes — Engenheiro de Dados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080b10;
+      --bg2: #0d1117;
+      --bg3: #111720;
+      --surface: #151d28;
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(0,212,170,0.35);
+      --accent: #00d4aa;
+      --accent2: #00a884;
+      --accent-glow: rgba(0,212,170,0.12);
+      --text: #e8ecf0;
+      --text-muted: #7b8fa1;
+      --text-dim: #4a5a6a;
+      --font-display: 'Syne', sans-serif;
+      --font-hero: 'Funnel Display', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 2px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(8,11,16,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 clamp(1.5rem, 8vw, 8rem);
+      overflow: hidden;
+    }
+
+    /* grid lines background */
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,170,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,170,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+    }
+
+    /* glow orb */
+    .hero-orb {
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,212,170,0.07) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0,212,170,0.08);
+      border: 1px solid rgba(0,212,170,0.2);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero-name {
+      font-family: var(--font-hero);
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+    .hero-name em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.01em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s ease;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #080b10;
+      box-shadow: 0 0 24px rgba(0,212,170,0.25);
+    }
+    .btn-primary:hover {
+      background: #00f0c0;
+      box-shadow: 0 0 36px rgba(0,212,170,0.4);
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover {
+      border-color: rgba(0,212,170,0.4);
+      color: var(--text);
+      background: rgba(0,212,170,0.05);
+    }
+
+    /* hero scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0.4;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollDown 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollDown {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 8vw, 8rem);
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-label::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── ABOUT ── */
+    #sobre {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .about-skills h3 {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+      margin-top: 1.75rem;
+    }
+    .about-skills h3:first-child { margin-top: 0; }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      padding: 0.35rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      border: 1px solid;
+    }
+    .tag-green {
+      background: rgba(0,212,170,0.07);
+      border-color: rgba(0,212,170,0.2);
+      color: #00d4aa;
+    }
+    .tag-blue {
+      background: rgba(56,139,255,0.07);
+      border-color: rgba(56,139,255,0.2);
+      color: #6cb3ff;
+    }
+    .tag-amber {
+      background: rgba(255,176,60,0.07);
+      border-color: rgba(255,176,60,0.2);
+      color: #ffb03c;
+    }
+    .tag-rose {
+      background: rgba(255,90,100,0.07);
+      border-color: rgba(255,90,100,0.2);
+      color: #ff7a85;
+    }
+
+    /* ── PROJECTS ── */
+    #projetos {
+      background: var(--bg);
+    }
+
+    .projects-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .project-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,212,170,0.1);
+    }
+    .project-card:hover::before { opacity: 1; }
+
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .project-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .icon-python { background: rgba(255,214,0,0.1); }
+    .icon-etl { background: rgba(0,212,170,0.1); }
+
+    .project-ext-link {
+      color: var(--text-dim);
+      transition: color 0.2s;
+      flex-shrink: 0;
+    }
+    .project-card:hover .project-ext-link { color: var(--accent); }
+
+    .project-name {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .stack-badge {
+      padding: 0.2rem 0.65rem;
+      border-radius: 5px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .badge-py { background: rgba(255,214,0,0.1); color: #ffd600; border: 1px solid rgba(255,214,0,0.2); }
+    .badge-nb { background: rgba(255,119,0,0.1); color: #ff7700; border: 1px solid rgba(255,119,0,0.2); }
+    .badge-sql { background: rgba(56,139,255,0.1); color: #6cb3ff; border: 1px solid rgba(56,139,255,0.2); }
+    .badge-dbt { background: rgba(255,90,100,0.1); color: #ff8a92; border: 1px solid rgba(255,90,100,0.2); }
+    .badge-ml { background: rgba(160,90,255,0.1); color: #b87cff; border: 1px solid rgba(160,90,255,0.2); }
+    .badge-pg { background: rgba(51,162,255,0.1); color: #33a2ff; border: 1px solid rgba(51,162,255,0.2); }
+    .badge-etl { background: rgba(0,212,170,0.1); color: #00d4aa; border: 1px solid rgba(0,212,170,0.2); }
+    .badge-pd { background: rgba(19,145,210,0.1); color: #13a2e2; border: 1px solid rgba(19,145,210,0.2); }
+
+    /* ── EXPERIENCE ── */
+    #experiencia {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline {
+      margin-top: 3rem;
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2rem;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.4rem;
+      top: 6px;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(0,212,170,0.5);
+    }
+
+    .timeline-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-period {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      background: rgba(0,212,170,0.08);
+      padding: 0.2rem 0.65rem;
+      border-radius: 4px;
+      border: 1px solid rgba(0,212,170,0.2);
+    }
+
+    .timeline-role {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-company {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+    }
+
+    /* ── CONTACT / FOOTER ── */
+    #contato {
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .contact-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-line {
+      width: 60px; height: 1px;
+      background: var(--accent);
+      margin: 0 auto 2rem;
+    }
+
+    .contact-message {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 5rem;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.25s;
+    }
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,212,170,0.05);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem clamp(1.5rem, 8vw, 8rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .footer-sig {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+    .footer-sig span { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .projects-intro { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero-name { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+      .projects-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+    }
+
+    /* ── STAT STRIP ── */
+    .stat-strip {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-item {}
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">EF<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#experiencia">Experiência</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-orb"></div>
+  <div class="hero-content">
+    <div class="hero-badge reveal">Engenheiro de Dados</div>
+    <h1 class="hero-name reveal reveal-delay-1">
+      Eduardo<br><em>Fernandes</em>
+    </h1>
+    <p class="hero-title reveal reveal-delay-2">
+      Data Engineer · Backend Developer · Analytics
+    </p>
+    <p class="hero-desc reveal reveal-delay-3">
+      Construo pipelines de dados robustos e eficientes, transformando dados brutos em insights acionáveis. Especializado em ETL, modelagem de dados e engenharia de software com Python.
+    </p>
+    <div class="hero-actions reveal reveal-delay-4">
+      <a href="#projetos" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        Ver Projetos
+      </a>
+      <a href="https://www.linkedin.com/in/eduardo-fernandes-938a91139/" target="_blank" class="btn btn-ghost">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/EduFrnds" target="_blank" class="btn btn-ghost">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="section-label reveal">Sobre mim</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2 class="section-title reveal">Dados como<br>linguagem nativa</h2>
+      <p class="reveal reveal-delay-1">
+        Profissional em transição consolidada para Engenharia de Dados, com sólida base em análise, modelagem e processamento de dados. Minha trajetória combina fundamentos de ciência de dados com as práticas modernas de engenharia — pipelines ETL, arquitetura medallion e boas práticas de software.
+      </p>
+      <p class="reveal reveal-delay-2">
+        Tenho experiência prática construindo soluções que cobrem o ciclo completo de vida dos dados: da coleta bruta ao produto final consumível por analistas e cientistas. Utilizo Python como linguagem principal, com domínio de ferramentas como dbt, PostgreSQL e SQLAlchemy para orquestrar fluxos de dados confiáveis.
+      </p>
+      <p class="reveal reveal-delay-3">
+        Acredito que bons dados sustentam boas decisões — e que a qualidade de um pipeline se mede pela confiança que ele gera nos times que o consomem.
+      </p>
+      <div class="stat-strip reveal reveal-delay-4">
+        <div class="stat-item">
+          <div class="stat-value">5+</div>
+          <div class="stat-label">Projetos publicados</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">3</div>
+          <div class="stat-label">Camadas ETL (Bronze/Silver/Gold)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">2+</div>
+          <div class="stat-label">Anos em dados</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-skills reveal reveal-delay-2">
+      <h3>Linguagens &amp; Core</h3>
+      <div class="skill-tags">
+        <span class="tag tag-green">Python</span>
+        <span class="tag tag-blue">SQL</span>
+        <span class="tag tag-amber">Jupyter Notebook</span>
+        <span class="tag tag-rose">Bash</span>
+      </div>
+
+      <h3>Engenharia de Dados</h3>
+      <div class="skill-tags">
+        <span class="tag tag-green">ETL / ELT</span>
+        <span class="tag tag-green">dbt Core</span>
+        <span class="tag tag-blue">PostgreSQL</span>
+        <span class="tag tag-blue">SQLAlchemy</span>
+        <span class="tag tag-amber">Arquitetura Medallion</span>
+        <span class="tag tag-rose">Data Modeling</span>
+      </div>
+
+      <h3>Análise &amp; Machine Learning</h3>
+      <div class="skill-tags">
+        <span class="tag tag-green">Pandas</span>
+        <span class="tag tag-blue">Scikit-learn</span>
+        <span class="tag tag-blue">Plotly</span>
+        <span class="tag tag-amber">Seaborn</span>
+        <span class="tag tag-amber">Time Series</span>
+        <span class="tag tag-rose">Web Scraping</span>
+      </div>
+
+      <h3>Dev &amp; Qualidade</h3>
+      <div class="skill-tags">
+        <span class="tag tag-green">Git / GitHub</span>
+        <span class="tag tag-green">GitHub Actions</span>
+        <span class="tag tag-blue">pytest</span>
+        <span class="tag tag-blue">flake8</span>
+        <span class="tag tag-amber">Docker</span>
+        <span class="tag tag-rose">Logging</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="projects-intro">
+    <div>
+      <div class="section-label reveal">Portfólio</div>
+      <h2 class="section-title reveal reveal-delay-1">Projetos selecionados</h2>
+    </div>
+    <a href="https://github.com/EduFrnds" target="_blank" class="btn btn-ghost reveal reveal-delay-2">
+      Ver todos no GitHub
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- CARD 1: process-etl -->
+    <a href="https://github.com/EduFrnds/process-etl" target="_blank" class="project-card reveal">
+      <div class="project-header">
+        <div class="project-icon icon-etl">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00d4aa" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h7"/><circle cx="17" cy="17" r="3"/><path d="M21 21l-1.5-1.5"/></svg>
+        </div>
+        <svg class="project-ext-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="project-name">process-etl</div>
+      <p class="project-desc">
+        Pipeline de engenharia de dados de ponta a ponta com arquitetura Medallion (Bronze → Silver → Gold). Processa dados de equipamentos industriais para identificar perdas de produtividade, anomalias operacionais e oportunidades de melhoria. Inclui CI/CD via GitHub Actions e suite de testes automatizados.
+      </p>
+      <div class="project-stack">
+        <span class="stack-badge badge-py">Python</span>
+        <span class="stack-badge badge-etl">ETL</span>
+        <span class="stack-badge badge-pg">PostgreSQL</span>
+        <span class="stack-badge badge-sql">SQLAlchemy</span>
+        <span class="stack-badge badge-pd">Pandas</span>
+      </div>
+    </a>
+
+    <!-- CARD 2: Case NorthWind -->
+    <a href="https://github.com/EduFrnds/Case-NorthWind" target="_blank" class="project-card reveal reveal-delay-1">
+      <div class="project-header">
+        <div class="project-icon icon-etl">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff8a92" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <svg class="project-ext-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="project-name">Case NorthWind</div>
+      <p class="project-desc">
+        Case técnico completo de engenharia de dados utilizando o clássico dataset Northwind. Implementa pipeline ETL com Python, modelagem de dados em camadas de staging e analytics usando dbt Core, integrado ao PostgreSQL. Arquitetura orientada a boas práticas de projetos de dados.
+      </p>
+      <div class="project-stack">
+        <span class="stack-badge badge-py">Python</span>
+        <span class="stack-badge badge-dbt">dbt Core</span>
+        <span class="stack-badge badge-pg">PostgreSQL</span>
+        <span class="stack-badge badge-etl">ETL</span>
+      </div>
+    </a>
+
+    <!-- CARD 3: Web Scraping + ML -->
+    <a href="https://github.com/EduFrnds/Dados-WebScraping-ML" target="_blank" class="project-card reveal reveal-delay-2">
+      <div class="project-header">
+        <div class="project-icon icon-python">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b87cff" stroke-width="1.8"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        </div>
+        <svg class="project-ext-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="project-name">Web Scraping + Machine Learning</div>
+      <p class="project-desc">
+        Projeto de análise social combinando web scraping de dados públicos da SSP-SP com um modelo de Machine Learning para previsão de séries temporais de feminicídios (2018–2021). Utiliza Exponential Smoothing, visualizações interativas com Plotly e métricas de validação RMSE.
+      </p>
+      <div class="project-stack">
+        <span class="stack-badge badge-nb">Jupyter</span>
+        <span class="stack-badge badge-py">Python</span>
+        <span class="stack-badge badge-ml">Scikit-learn</span>
+        <span class="stack-badge badge-pd">Pandas</span>
+      </div>
+    </a>
+
+    <!-- CARD 4: Projeto Insights -->
+    <a href="https://github.com/EduFrnds/Dados-ProjetoInsights" target="_blank" class="project-card reveal reveal-delay-3">
+      <div class="project-header">
+        <div class="project-icon icon-python">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffd600" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <svg class="project-ext-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="project-name">Projeto de Insights — Agro</div>
+      <p class="project-desc">
+        Análise exploratória para uma empresa fornecedora de insumos agrícolas com 5.000 clientes. Identifica os meses de maior faturamento, correlação entre propriedade (hectares) e valor de venda, e perfis de produtores mais rentáveis. Conclui com propostas estratégicas de CRM e régua de relacionamento.
+      </p>
+      <div class="project-stack">
+        <span class="stack-badge badge-nb">Jupyter</span>
+        <span class="stack-badge badge-py">Python</span>
+        <span class="stack-badge badge-pd">Pandas</span>
+        <span class="stack-badge badge-ml">Plotly</span>
+      </div>
+    </a>
+
+    <!-- CARD 5: Modelagem de Dados -->
+    <a href="https://github.com/EduFrnds/Dados-ModelagemDados" target="_blank" class="project-card reveal reveal-delay-4">
+      <div class="project-header">
+        <div class="project-icon icon-python">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6cb3ff" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <svg class="project-ext-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="project-name">Modelagem de Dados — PIB Global</div>
+      <p class="project-desc">
+        Roteiro completo de modelagem e preparação de dados a partir de dados do PIB nominal de países (Wikipedia). Aborda limpeza de dados, tratamento de nulos, conversão de tipos, estatística descritiva, junção de datasets entre 2018–2020 e criação de funções de classificação automática.
+      </p>
+      <div class="project-stack">
+        <span class="stack-badge badge-nb">Jupyter</span>
+        <span class="stack-badge badge-py">Python</span>
+        <span class="stack-badge badge-pd">Pandas</span>
+        <span class="stack-badge badge-ml">Matplotlib</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- EXPERIÊNCIA -->
+<section id="experiencia">
+  <div class="section-label reveal">Trajetória</div>
+  <h2 class="section-title reveal reveal-delay-1">Experiência Profissional</h2>
+
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">
+        <span class="timeline-period">2023 — Presente</span>
+      </div>
+      <div class="timeline-role">Engenheiro de Dados</div>
+      <div class="timeline-company">Projetos Independentes &amp; Estudos Aplicados</div>
+      <p class="timeline-desc">
+        Desenvolvimento de pipelines ETL completos com arquitetura Medallion, utilizando Python, PostgreSQL e dbt Core. Construção de projetos que cobrem o ciclo de vida completo dos dados: ingestão, transformação, validação e entrega para consumo analítico. Adoção de boas práticas de engenharia de software: testes automatizados com pytest, linting com flake8 e CI/CD via GitHub Actions.
+      </p>
+    </div>
+
+    <div class="timeline-item reveal reveal-delay-1">
+      <div class="timeline-meta">
+        <span class="timeline-period">2021 — 2023</span>
+      </div>
+      <div class="timeline-role">Analista de Dados</div>
+      <div class="timeline-company">Projetos de Data Science e Analytics</div>
+      <p class="timeline-desc">
+        Atuação em projetos de análise exploratória, modelagem preditiva e geração de insights para negócios. Trabalhos envolvendo setores como agronegócio (análise de carteira de clientes) e dados públicos (segurança pública SP). Uso extensivo de Python com Pandas, Plotly, Seaborn e Scikit-learn para extração de valor de dados brutos.
+      </p>
+    </div>
+
+    <div class="timeline-item reveal reveal-delay-2">
+      <div class="timeline-meta">
+        <span class="timeline-period">2020 — 2021</span>
+      </div>
+      <div class="timeline-role">Formação em Data Science</div>
+      <div class="timeline-company">ALURA — Escola de Tecnologia</div>
+      <p class="timeline-desc">
+        Formação intensiva em Python para Data Science, cobrindo fundamentos de análise de dados, machine learning, visualização e web scraping. Conclusão de múltiplos projetos práticos integrando conceitos de estatística, programação e ciência de dados aplicada a problemas reais.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="contact-inner">
+    <div class="section-label reveal" style="justify-content:center;">Contato</div>
+    <h2 class="section-title reveal reveal-delay-1" style="text-align:center;">Vamos construir<br>algo juntos</h2>
+    <div class="contact-line reveal reveal-delay-2"></div>
+    <p class="contact-message reveal reveal-delay-3">
+      Aberto a oportunidades em engenharia de dados, desenvolvimento backend e projetos de analytics. Se você tem um desafio interessante envolvendo dados, entre em contato.
+    </p>
+    <div class="contact-links reveal reveal-delay-4">
+      <a href="https://www.linkedin.com/in/eduardo-fernandes-938a91139/" target="_blank" class="contact-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/EduFrnds" target="_blank" class="contact-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2024 Eduardo Fernandes. Todos os direitos reservados.</span>
+    <span class="footer-sig">Construído com <span>dados</span> e código.</span>
+  </footer>
+</section>
+
+<script>
+  // Navbar scroll effect
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Intersection Observer for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Trigger hero items on load
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('visible'));
+    }, 150);
+  });
+</script>
+</body>
+</html>
