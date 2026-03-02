@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eduardo Fernandes | Engenheiro de Dados</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0a0a0f;
+  --surface:#11131a;
+  --border:#1f2330;
+  --text:#e6e8ee;
+  --muted:#9aa3b2;
+  --accent:#00b3a4;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Source Sans 3",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  backdrop-filter:blur(10px);
+  background:rgba(10,10,15,0.7);
+  border-bottom:1px solid var(--border);
+  z-index:1000;
+}
+
+.nav-container{
+  max-width:1100px;
+  margin:auto;
+  padding:1rem 1.5rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.nav-links a{
+  color:var(--muted);
+  text-decoration:none;
+  margin-left:1.5rem;
+  font-weight:500;
+  transition:0.3s;
+}
+.nav-links a:hover{color:var(--accent)}
+
+header{
+  padding:140px 1.5rem 100px;
+  max-width:1100px;
+  margin:auto;
+}
+
+h1{
+  font-family:"Outfit",sans-serif;
+  font-size:2.8rem;
+  font-weight:700;
+}
+
+h2{
+  font-family:"Outfit",sans-serif;
+  font-size:1.8rem;
+  margin-bottom:1rem;
+}
+
+.subtitle{
+  color:var(--accent);
+  font-weight:600;
+  margin-top:0.5rem;
+}
+
+.hero-text{
+  margin-top:1.2rem;
+  max-width:600px;
+  color:var(--muted);
+}
+
+.buttons{
+  margin-top:2rem;
+}
+
+.btn{
+  display:inline-block;
+  padding:0.8rem 1.4rem;
+  margin-right:1rem;
+  border-radius:6px;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:600;
+  transition:0.3s;
+}
+.btn:hover{
+  background:var(--accent);
+  color:#000;
+}
+
+section{
+  max-width:1100px;
+  margin:auto;
+  padding:80px 1.5rem;
+}
+
+.card-grid{
+  display:grid;
+  gap:1.5rem;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+}
+
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:1.5rem;
+  border-radius:10px;
+  transition:0.3s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  border-color:var(--accent);
+}
+
+.badges{
+  margin-top:1rem;
+}
+.badge{
+  display:inline-block;
+  background:#1b202c;
+  color:var(--muted);
+  padding:0.3rem 0.6rem;
+  border-radius:4px;
+  font-size:0.75rem;
+  margin:0.2rem;
+}
+
+.timeline{
+  border-left:2px solid var(--border);
+  padding-left:1.5rem;
+}
+.timeline-item{
+  margin-bottom:2rem;
+}
+.timeline-item h3{
+  font-size:1.1rem;
+}
+.timeline-item span{
+  color:var(--muted);
+  font-size:0.9rem;
+}
+
+footer{
+  border-top:1px solid var(--border);
+  text-align:center;
+  padding:40px 1.5rem;
+  color:var(--muted);
+}
+
+.fade{
+  opacity:0;
+  transform:translateY(20px);
+  transition:all 0.8s ease;
+}
+.fade.show{
+  opacity:1;
+  transform:none;
+}
+
+@media(max-width:768px){
+  h1{font-size:2.2rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-container">
+    <strong>Eduardo Fernandes</strong>
+    <div class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#experiencia">Experiência</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </div>
+</nav>
+
+<header class="fade">
+  <h1>Eduardo Fernandes</h1>
+  <div class="subtitle">Engenheiro de Dados | Desenvolvedor Backend</div>
+  <p class="hero-text">
+    Profissional focado em engenharia de dados, modelagem analítica e desenvolvimento backend.
+    Experiência na construção de pipelines ETL, modelagem de dados e soluções orientadas a performance.
+  </p>
+  <div class="buttons">
+    <a class="btn" href="#projetos">Ver Projetos</a>
+    <a class="btn" href="https://www.linkedin.com/in/eduardo-fernandes-938a91139/" target="_blank">LinkedIn</a>
+    <a class="btn" href="https://github.com/EduFrnds" target="_blank">GitHub</a>
+  </div>
+</header>
+
+<main>
+
+<section id="sobre" class="fade">
+  <h2>Sobre Mim</h2>
+  <p>
+    Atuo com arquitetura de dados, integração entre sistemas e desenvolvimento de soluções escaláveis.
+    Tenho experiência com modelagem dimensional, processos ETL, automação de fluxos de dados e APIs backend.
+    Trabalho com foco em organização, performance e clareza estrutural dos dados.
+  </p>
+  <div class="badges">
+    <span class="badge">Python</span>
+    <span class="badge">SQL</span>
+    <span class="badge">ETL</span>
+    <span class="badge">PostgreSQL</span>
+    <span class="badge">MySQL</span>
+    <span class="badge">Modelagem Dimensional</span>
+    <span class="badge">Machine Learning</span>
+    <span class="badge">Web Scraping</span>
+  </div>
+</section>
+
+<section id="projetos" class="fade">
+  <h2>Projetos</h2>
+  <div class="card-grid">
+
+    <article class="card">
+      <h3>Dados WebScraping ML</h3>
+      <p>Projeto de coleta automatizada de dados da web com tratamento e aplicação de modelos de machine learning para geração de insights.</p>
+      <div class="badges">
+        <span class="badge">Python</span>
+        <span class="badge">Pandas</span>
+        <span class="badge">Scikit Learn</span>
+      </div>
+      <a class="btn" href="https://github.com/EduFrnds/Dados-WebScraping-ML" target="_blank">Ver Repositório</a>
+    </article>
+
+    <article class="card">
+      <h3>Modelagem de Dados</h3>
+      <p>Estudo prático de modelagem relacional e dimensional com foco em organização analítica e estruturação de data warehouse.</p>
+      <div class="badges">
+        <span class="badge">SQL</span>
+        <span class="badge">Data Warehouse</span>
+        <span class="badge">Dimensional</span>
+      </div>
+      <a class="btn" href="https://github.com/EduFrnds/Dados-ModelagemDados" target="_blank">Ver Repositório</a>
+    </article>
+
+    <article class="card">
+      <h3>Projeto Insights</h3>
+      <p>Pipeline completo de ingestão, transformação e geração de insights a partir de dados estruturados.</p>
+      <div class="badges">
+        <span class="badge">Python</span>
+        <span class="badge">ETL</span>
+        <span class="badge">Análise</span>
+      </div>
+      <a class="btn" href="https://github.com/EduFrnds/Dados-ProjetoInsights" target="_blank">Ver Repositório</a>
+    </article>
+
+    <article class="card">
+      <h3>Process ETL</h3>
+      <p>Implementação de fluxo ETL com camadas RAW, STG e MART visando organização e qualidade de dados.</p>
+      <div class="badges">
+        <span class="badge">ETL</span>
+        <span class="badge">PostgreSQL</span>
+        <span class="badge">Arquitetura de Dados</span>
+      </div>
+      <a class="btn" href="https://github.com/EduFrnds/process-etl" target="_blank">Ver Repositório</a>
+    </article>
+
+    <article class="card">
+      <h3>Case NorthWind</h3>
+      <p>Estudo analítico baseado na base NorthWind com modelagem e consultas avançadas para extração de indicadores.</p>
+      <div class="badges">
+        <span class="badge">SQL</span>
+        <span class="badge">Modelagem</span>
+        <span class="badge">Analytics</span>
+      </div>
+      <a class="btn" href="https://github.com/EduFrnds/Case-NorthWind" target="_blank">Ver Repositório</a>
+    </article>
+
+  </div>
+</section>
+
+<section id="experiencia" class="fade">
+  <h2>Experiência Profissional</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <h3>Engenharia e Desenvolvimento de Dados</h3>
+      <span>Atuação recente</span>
+      <p>Desenvolvimento de pipelines, modelagem de dados e integração entre sistemas com foco analítico.</p>
+    </div>
+    <div class="timeline-item">
+      <h3>Desenvolvimento Backend</h3>
+      <span>Experiência anterior</span>
+      <p>Construção de APIs e automação de processos orientados a dados.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="contato">
+  <p>Conecte-se para discutir projetos de dados e backend.</p>
+  <p>
+    <a href="https://www.linkedin.com/in/eduardo-fernandes-938a91139/" target="_blank">LinkedIn</a> |
+    <a href="https://github.com/EduFrnds" target="_blank">GitHub</a>
+  </p>
+</footer>
+
+<script>
+const faders=document.querySelectorAll(".fade");
+const appearOptions={threshold:0.2};
+const appearOnScroll=new IntersectionObserver(function(entries,appearOnScroll){
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting){return;}
+    entry.target.classList.add("show");
+    appearOnScroll.unobserve(entry.target);
+  });
+},appearOptions);
+
+faders.forEach(fader=>{
+  appearOnScroll.observe(fader);
+});
+</script>
+
+</body>
+</html>
