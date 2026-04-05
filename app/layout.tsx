@@ -1,15 +1,24 @@
-import { Geist, Geist_Mono } from "next/font/google"
+import { Inter, Space_Grotesk } from "next/font/google"
 
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
-
-const fontMono = Geist_Mono({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-inter",
+  display: "swap",
 })
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+})
+
+export const metadata = {
+  title: "Ciclo | Dados que guiam",
+  description:
+    "Transformar dados em decisões práticas para empresas que querem crescer.",
+}
 
 export default function RootLayout({
   children,
@@ -18,13 +27,19 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
+      lang="pt-BR"
+      className={`dark ${inter.variable} ${spaceGrotesk.variable}`}
     >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+        />
+      </head>
+      <body className="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-white">
+        {children}
       </body>
     </html>
   )
 }
+

@@ -1,19 +1,26 @@
-import { Button } from "@/components/ui/button"
+import { Navbar } from "@/components/layout/navbar"
+import { Footer } from "@/components/layout/footer"
+import { HeroSection } from "@/components/sections/hero-section"
+import { ValuePropositionSection } from "@/components/sections/value-proposition-section"
+import { PillarsSection } from "@/components/sections/pillars-section"
+import { ProjectsSection } from "@/components/sections/projects-section"
+import { ClosingCtaSection } from "@/components/sections/closing-cta-section"
+import { ScrollProgress } from "@/components/ui/scroll-progress"
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
-    </div>
+    <>
+      <ScrollProgress />
+      <Navbar />
+      <main>
+        <HeroSection />
+        <ValuePropositionSection />
+        <PillarsSection />
+        <ProjectsSection />
+        <ClosingCtaSection />
+      </main>
+      <Footer />
+    </>
   )
 }
+
