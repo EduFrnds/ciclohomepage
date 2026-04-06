@@ -51,10 +51,10 @@ export function HeroSection() {
               Iniciar Diagnóstico
             </a>
             <a
-              href="#sobre"
+              href="#pilares"
               className="border border-outline-variant backdrop-blur-md text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/5 transition-colors flex items-center justify-center gap-2"
             >
-              Nossa Metodologia{" "}
+              Nossos Fundamentos{" "}
               <MaterialIcon name="arrow_forward" />
             </a>
           </div>
