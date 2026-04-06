@@ -40,7 +40,7 @@ export function PillarsSection() {
     >
       <div className="max-w-7xl mx-auto px-8">
         <div className="text-center mb-12">
-          <span className="text-xs font-label uppercase tracking-widest text-accent">
+          <span className="text-xs font-label uppercase tracking-widest text-[#e0e0e0]">
             Fundamentos
           </span>
           <h2
