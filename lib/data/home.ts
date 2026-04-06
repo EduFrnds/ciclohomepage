@@ -1,6 +1,6 @@
 export const navLinks = [
   { href: "#", label: "Início", active: true },
-  { href: "#sobre", label: "Operação" },
+  { href: "#sobre", label: "Nossa Abordagem" },
   { href: "#pilares", label: "Pilares" },
   { href: "#clientes", label: "Clientes" },
 ]
