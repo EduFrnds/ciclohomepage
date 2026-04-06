@@ -21,6 +21,7 @@ export const pillars: Pillar[] = [
     description:
       "Entender o cenário atual e o objetivo futuro antes de propor qualquer solução tecnológica.",
     variant: "primary",
+    iconColor: "#056cf2"
   },
   {
     icon: "account_tree",
@@ -37,6 +38,7 @@ export const pillars: Pillar[] = [
     description:
       "Transformar dados estruturados em análises que sustentam o crescimento real e sustentável.",
     variant: "primary",
+    iconColor: "#05aff2"
   },
 ]
 
