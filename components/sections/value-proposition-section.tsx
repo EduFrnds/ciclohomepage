@@ -9,7 +9,7 @@ export function ValuePropositionSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           {/* Left: intro */}
           <div className="flex flex-col gap-6">
-            <span className="text-xs font-label uppercase tracking-[0.2em] text-accent">
+            <span className="text-xs font-label uppercase tracking-[0.2em] text-[#e0e0e0]">
               Nossa Abordagem
             </span>
             <h2
@@ -20,8 +20,10 @@ export function ValuePropositionSection() {
             </h2>
             <div className="w-20 h-1 bg-primary" aria-hidden="true" />
             <p className="text-on-surface/70 leading-relaxed text-lg">
-              Facilitamos sua operação organizando o que hoje está disperso,
-              transformando dados brutos em estrutura analítica confiável.
+              Hoje muitos negócios tomam decisões com planilhas desconectadas, relatórios manuais e indicadores sem confiança.
+              
+              Nossa atuação organiza a base, estrutura o fluxo dos dados e transforma a operação em um ambiente confiável para crescimento, 
+              controle e escala.
             </p>
           </div>
 
@@ -32,20 +34,23 @@ export function ValuePropositionSection() {
                 O impacto no seu dia a dia
               </h3>
               <p className="text-on-surface/70 leading-relaxed">
-                No dia a dia, isso significa decisões mais rápidas, menos
-                retrabalho, reuniões objetivas e segurança para direcionar
-                investimento.
+                No dia a dia, isso significa menos tempo perdido consolidando informações, 
+                reuniões orientadas por indicadores confiáveis e decisões mais rápidas sobre onde agir,
+                corrigir e investir.
               </p>
             </article>
 
             <article className="p-8 rounded-2xl bg-surface-container border-l-4 border-accent">
               <h3 className="text-2xl font-headline font-bold text-white mb-4">
-                Por que somos a melhor escolha
+                Por que a Ciclo é a escolha certa
               </h3>
               <p className="text-on-surface/70 leading-relaxed">
-                Somos a escolha certa porque atuamos na causa do problema, não
-                apenas na superfície dos relatórios. Modelagem correta antes de
-                visualização.
+                Não entregamos apenas dashboards.
+
+                Atuamos na origem do problema, estruturando a lógica dos dados, 
+                regras de negócio e indicadores para que cada análise represente a realidade da operação.
+
+                É isso que transforma BI em decisão, e não apenas em visualização.
               </p>
             </article>
           </div>
