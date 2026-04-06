@@ -18,6 +18,7 @@ export default function Page() {
         <PillarsSection />
         <ProjectsSection />
         <ClosingCtaSection />
+        <div id="contato">contato</div>
       </main>
       <Footer />
     </>
