@@ -20,7 +20,7 @@ export function HeroSection() {
         <div className="lg:col-span-7 flex flex-col gap-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-outline-variant bg-surface-container/50 backdrop-blur-md w-fit">
             <span
-              className="w-2 h-2 rounded-full bg-accent animate-pulse"
+              className="w-2 h-2 rounded-full bg-[#e0e0e0] animate-pulse"
               aria-hidden="true"
             />
             <span className="text-xs font-label uppercase tracking-widest text-accent">
