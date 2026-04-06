@@ -11,6 +11,7 @@ export interface Pillar {
   description: string
   variant: "primary" | "accent"
   featured?: boolean
+  iconColor?: string
 }
 
 export const pillars: Pillar[] = [
@@ -26,7 +27,8 @@ export const pillars: Pillar[] = [
     title: "Pilar 2 — Estrutura Inteligente",
     description:
       "Modelagem e organização dos dados para criar uma base confiável e escalável.",
-    variant: "accent",
+    variant: "primary",
+    iconColor: "#0540f2",
     featured: true,
   },
   {
