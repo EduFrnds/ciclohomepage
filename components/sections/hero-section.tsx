@@ -23,7 +23,7 @@ export function HeroSection() {
               className="w-2 h-2 rounded-full bg-[#e0e0e0] animate-pulse"
               aria-hidden="true"
             />
-            <span className="text-xs font-label uppercase tracking-widest text-accent">
+            <span className="text-xs font-label uppercase tracking-widest text-[#e0e0e0]">
               Inteligência que gera eficiência
             </span>
           </div>
