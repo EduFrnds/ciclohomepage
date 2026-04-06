@@ -18,13 +18,20 @@ export function ValuePropositionSection() {
             >
               Como facilitamos sua operação
             </h2>
+
             <div className="w-20 h-1 bg-primary" aria-hidden="true" />
-            <p className="text-on-surface/70 leading-relaxed text-lg">
-              Hoje muitos negócios tomam decisões com planilhas desconectadas, relatórios manuais e indicadores sem confiança.
-              
-              Nossa atuação organiza a base, estrutura o fluxo dos dados e transforma a operação em um ambiente confiável para crescimento, 
-              controle e escala.
-            </p>
+
+            <div className="text-on-surface/70 leading-relaxed text-lg space-y-5">
+              <p>
+                Hoje muitos negócios tomam decisões com planilhas desconectadas,
+                relatórios manuais e indicadores sem confiança.
+              </p>
+
+              <p>
+                Nossa atuação organiza a base, estrutura o fluxo dos dados e
+                transforma a operação em um ambiente confiável para crescimento,
+                controle e escala.
+              </p>
           </div>
 
           {/* Right: impact cards */}
