@@ -32,7 +32,7 @@ export function ClosingCtaSection() {
         </h2>
 
         <a
-          href="https://linkedin.com"
+          href="https://wa.me/5548991584156?text=Ol%C3%A1.%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista%20para%20avaliar%20oportunidades%20de%20melhoria%20na%20gest%C3%A3o%20dos%20nossos%20dados."
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block bg-primary text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-primary-alt transition-all shadow-2xl shadow-primary/40"
