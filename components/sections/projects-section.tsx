@@ -40,7 +40,7 @@ export function ProjectsSection() {
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-xl">
-            <span className="text-xs font-label uppercase tracking-widest text-accent">
+            <span className="text-xs font-label uppercase tracking-widest text-[#e0e0e0]">
               Casos de Sucesso
             </span>
             <h2

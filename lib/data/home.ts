@@ -2,7 +2,8 @@ export const navLinks = [
   { href: "#", label: "Início", active: true },
   { href: "#sobre", label: "Nossa Abordagem" },
   { href: "#pilares", label: "Pilares" },
-  { href: "#clientes", label: "Clientes" },
+  { href: "#testimonials", label: "Clientes" },
+  { href: "#projetos", label: "Cases" },
 ]
 
 export interface Pillar {
