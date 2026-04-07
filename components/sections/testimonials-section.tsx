@@ -8,91 +8,33 @@ type Testimonial = {
   role: string
   image: string
   quote: string
+  link: string
 }
 
 const testimonials: Testimonial[] = [
   {
-    name: "Alexandra Mitchell",
-    role: "Desenvolvedora Frontend Sênior",
-    image: "https://notion-avatars.netlify.app/api/avatar?preset=female-1",
+    name: "Lilian de Paula",
+    role: "CEO LP Soluções.",
+    image: "/LP.jpg",
     quote:
-      "Esta plataforma transformou completamente nosso fluxo de trabalho de desenvolvimento. O sistema de componentes é tão bem arquitetado que até aplicações complexas parecem simples de construir.",
+      "Trabalhar em parceria com a CICLO, tem sido uma experiência muito enriquecedora. Atuamos juntos em projetos de BI que exigem tanto profundidade técnica quanto visão estratégica, e essa troca tem agregado muito valor às entregas. É uma consultoria que realmente entrega profissionalismo, competência e dedicação.",
+    link: "https://www.instagram.com/liliancdepaula/",
   },
   {
-    name: "James Thompson",
-    role: "Líder Técnico",
-    image: "https://notion-avatars.netlify.app/api/avatar?preset=male-1",
+    name: "André Melo",
+    role: "CEO Melo Logística.",
+    image: "/MELO.jpg",
     quote:
-      "Depois de experimentar inúmeros frameworks, este foi o que finalmente se encaixou. A documentação é excepcional.",
+      "Com a  consultoria de dados da CICLO, está sendo possível enxergar o que antes parecia distante. Muita informação está sendo transformada em dado real, fazendo nós, da MELO, ajustarmos as velas e continuarmos a navegar, porém de uma forma mais segura e confíavel.",
+    link: "https://www.instagram.com/melo_logistica/",
   },
   {
-    name: "Priya Sharma",
-    role: "Designer de Produto",
-    image: "https://notion-avatars.netlify.app/api/avatar?preset=female-2",
+    name: "Amanda de Carvalho",
+    role: "Diretora Amanda de Carvalho - Consultoria e Treinamentos.",
+    image: "/AMANDA.jpg",
     quote:
-      "O sistema de design é bonito e consistente. Consigo prototipar ideias rapidamente e entregá-las aos desenvolvedores com a certeza de que a implementação ficará perfeita.",
-  },
-  {
-    name: "Robert Kim",
-    role: "Gerente de Engenharia",
-    image: "https://notion-avatars.netlify.app/api/avatar?preset=male-2",
-    quote:
-      "Migramos toda a nossa aplicação para esta plataforma em apenas duas semanas. As melhorias de desempenho foram imediatas.",
-  },
-  {
-    name: "Maria Santos",
-    role: "Engenheira Full Stack",
-    image: "https://notion-avatars.netlify.app/api/avatar?preset=female-3",
-    quote:
-      "Os recursos de acessibilidade são de primeira linha. Nunca foi tão fácil criar aplicações inclusivas. Cada componente segue as melhores práticas desde o início, e o conjunto de testes automatizados garante que mantenhamos altos padrões de acessibilidade em todo o processo de desenvolvimento.",
-  },
-  {
-    name: "Thomas Anderson",
-    role: "Arquiteto de Soluções",
-    image: "https://notion-avatars.netlify.app/api/avatar?preset=male-3",
-    quote:
-      "Escalabilidade era nossa maior preocupação, mas esta plataforma lida com a complexidade empresarial com facilidade.",
-  },
-  {
-    name: "Lisa Chang",
-    role: "Pesquisadora de UX",
-    image: "https://notion-avatars.netlify.app/api/avatar?preset=female-4",
-    quote:
-      "Os resultados dos testes com usuários têm sido consistentemente positivos desde que adotamos esta plataforma. A experiência do usuário é intuitiva e o desempenho é excepcional. Nossos índices de satisfação aumentaram 40% desde a migração.",
-  },
-  {
-    name: "Michael Foster",
-    role: "Engenheiro DevOps",
-    image: "https://notion-avatars.netlify.app/api/avatar?preset=male-4",
-    quote:
-      "Implantação e manutenção são muito simples. A plataforma se integra perfeitamente ao nosso pipeline de CI/CD.",
-  },
-  {
-    name: "Sophie Laurent",
-    role: "Diretora Criativa",
-    image: "https://notion-avatars.netlify.app/api/avatar?preset=female-5",
-    quote:
-      "As possibilidades criativas são infinitas. Podemos dar vida a qualquer conceito de design sem comprometer a qualidade técnica ou a experiência do usuário.",
-  },
-  {
-    name: "Daniel Wilson",
-    role: "Desenvolvedor Backend",
-    image: "https://notion-avatars.netlify.app/api/avatar?preset=male-5",
-    quote: "O design da API é excepcional. Limpo, intuitivo e bem documentado.",
-  },
-  {
-    name: "Natasha Petrov",
-    role: "Desenvolvedora de Apps Mobile",
-    image: "https://notion-avatars.netlify.app/api/avatar?preset=female-6",
-    quote:
-      "O desenvolvimento multiplataforma nunca foi tão eficiente. Uma base de código, múltiplas plataformas, experiência de usuário consistente. Este é o futuro. O sistema de design responsivo garante que nossos apps fiquem perfeitos em qualquer dispositivo.",
-  },
-  {
-    name: "Carlos Rivera",
-    role: "Fundador de Startup",
-    image: "https://notion-avatars.netlify.app/api/avatar?preset=male-6",
-    quote:
-      "Como fundador sem formação técnica, esta plataforma me deu a confiança para construir nosso MVP rapidamente.",
+      "Projeto em desenvolvimento - A proposta é sair de registros dispersos e pouca visibilidade para um modelo consistente, onde cada auditoria gera informação confiável, comparável e útil para a operação. Na prática, vamos estruturar a base que sustenta a melhoria contínua, permitindo acompanhar evolução por área, identificar desvios com rapidez e apoiar decisões com segurança.",
+    link: "https://www.instagram.com/amandacarvalhosgi/",
   },
 ]
 
@@ -142,8 +84,9 @@ export function TestimonialsSection() {
 
                   <div className="min-w-0 flex-1">
                     <a
-                      href="#"
-                      onClick={(e) => e.preventDefault()}
+                      href={testimonial.link}
+                      target="_blank"
+                      rel="noreferrer"
                       className="cursor-pointer"
                     >
                       <h3 className="font-medium transition-colors hover:text-primary">

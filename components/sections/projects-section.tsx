@@ -7,9 +7,9 @@ import { projects, type Project } from "@/lib/data/home"
 function ProjectCard({ project }: { project: Project }) {
   return (
     <article
-      className={`group cursor-pointer${project.offset ? " md:mt-12" : ""}`}
+      className={`group cursor-pointer${project.offset ? "md:mt-12" : ""}`}
     >
-      <div className="relative aspect-video overflow-hidden rounded-2xl mb-6">
+      <div className="relative mb-6 aspect-video overflow-hidden rounded-2xl">
         <Image
           src={project.image}
           alt={project.imageAlt}
@@ -22,10 +22,10 @@ function ProjectCard({ project }: { project: Project }) {
           aria-hidden="true"
         />
       </div>
-      <h3 className="text-2xl font-headline font-bold text-white group-hover:text-primary transition-colors">
+      <h3 className="font-headline text-2xl font-bold text-white transition-colors group-hover:text-primary">
         {project.title}
       </h3>
-      <p className="text-on-surface/60 mt-2 mb-4">{project.description}</p>
+      <p className="mt-2 mb-4 text-on-surface/60">{project.description}</p>
     </article>
   )
 }
@@ -33,33 +33,32 @@ function ProjectCard({ project }: { project: Project }) {
 export function ProjectsSection() {
   return (
     <section
-      className="py-24 bg-surface"
+      className="bg-surface py-24"
       id="projetos"
       aria-labelledby="projects-heading"
     >
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+      <div className="mx-auto max-w-7xl px-8">
+        <div className="mb-16 flex flex-col items-end justify-between gap-6 md:flex-row">
           <div className="max-w-xl">
-            <span className="text-xs font-label uppercase tracking-widest text-[#e0e0e0]">
+            <span className="font-label text-xs tracking-widest text-[#e0e0e0] uppercase">
               Casos de Sucesso
             </span>
             <h2
               id="projects-heading"
-              className="text-4xl font-headline font-bold text-white mt-4"
+              className="mt-4 font-headline text-4xl font-bold text-white"
             >
               Projetos que Geraram Valor
             </h2>
           </div>
           <Link
             href="#projetos"
-            className="text-primary font-bold hover:text-accent flex items-center gap-2 transition-colors"
+            className="flex items-center gap-2 font-bold text-primary transition-colors hover:text-accent"
           >
-            Ver todos projetos{" "}
-            <MaterialIcon name="north_east" />
+            Ver todos projetos <MaterialIcon name="north_east" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
           {projects.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}
