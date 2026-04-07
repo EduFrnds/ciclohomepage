@@ -100,14 +100,14 @@ export function TestimonialsSection() {
         {/* Section Header */}
         <div className="mx-auto max-w-2xl text-center mb-16">
            <span className="text-xs font-label uppercase tracking-widest text-[#e0e0e0]">
-            Fundamentos
+            Resultados que geram confiança
           </span>
 
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-            Impulsionando a Inovação em Todo o Mundo
+            Empresas que transformaram dados dispersos em decisões com direção
           </h2>
           <p className="text-lg text-muted-foreground">
-            Junte-se a milhares de desenvolvedores e equipes que confiam em nossa plataforma para criar experiências digitais excepcionais.
+            Projetos desenvolvidos com foco em estrutura, confiabilidade e decisões sustentadas por dados que refletem a realidade da operação.
           </p>
         </div>
 
