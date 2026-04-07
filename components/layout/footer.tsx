@@ -4,31 +4,31 @@ import Link from "next/link"
 import { MaterialIcon } from "@/components/ui/material-icon"
 import { NewsletterForm } from "@/components/ui/newsletter-form"
 import {
-  footerPillarLinks,
   footerInstitutionalLinks,
   footerLegalLinks,
+  footerPillarLinks,
   LOGO_URL,
 } from "@/lib/data/home"
 
 export function Footer() {
   return (
-    <footer className="bg-surface border-t border-outline-variant w-full py-16 px-8">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto">
+    <footer className="w-full border-t border-outline-variant bg-surface px-8 py-16">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-4">
         {/* Brand */}
         <div className="md:col-span-1">
-          <Link href="/" className="flex items-center gap-2 mb-6">
+          <Link href="/" className="mb-6 flex items-center gap-2">
             <Image
               src={LOGO_URL}
               alt="Ciclo Logo"
               width={32}
               height={32}
-              className="object-contain"
+              className="rounded-lg object-contain"
             />
-            <span className="text-lg font-headline font-bold text-white">
+            <span className="font-headline text-lg font-bold text-white">
               Ciclo
             </span>
           </Link>
-          <p className="text-on-surface/50 text-sm leading-relaxed mb-6">
+          <p className="mb-6 text-sm leading-relaxed text-on-surface/50">
             Dados que guiam empresas rumo à excelência operacional e crescimento
             estratégico.
           </p>
@@ -38,7 +38,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Ciclo no LinkedIn"
-              className="size-8 rounded-full border border-outline-variant flex items-center justify-center text-on-surface/50 hover:text-primary transition-colors"
+              className="flex size-8 items-center justify-center rounded-full border border-outline-variant text-on-surface/50 transition-colors hover:text-primary"
             >
               <MaterialIcon name="share" className="text-lg" />
             </a>
@@ -47,13 +47,13 @@ export function Footer() {
 
         {/* Pilares */}
         <nav aria-label="Links dos pilares">
-          <h5 className="text-white font-headline font-bold mb-6">Pilares</h5>
+          <h5 className="mb-6 font-headline font-bold text-white">Pilares</h5>
           <ul className="flex flex-col gap-4">
             {footerPillarLinks.map((link) => (
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className="text-on-surface/50 text-sm hover:text-primary transition-all inline-block"
+                  className="inline-block text-sm text-on-surface/50 transition-all hover:text-primary"
                 >
                   {link.label}
                 </Link>
@@ -64,7 +64,7 @@ export function Footer() {
 
         {/* Institucional */}
         <nav aria-label="Links institucionais">
-          <h5 className="text-white font-headline font-bold mb-6">
+          <h5 className="mb-6 font-headline font-bold text-white">
             Institucional
           </h5>
           <ul className="flex flex-col gap-4">
@@ -72,7 +72,7 @@ export function Footer() {
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className="text-on-surface/50 text-sm hover:text-primary transition-all inline-block"
+                  className="inline-block text-sm text-on-surface/50 transition-all hover:text-primary"
                 >
                   {link.label}
                 </Link>
@@ -83,10 +83,10 @@ export function Footer() {
 
         {/* Newsletter */}
         <div>
-          <h5 className="text-white font-headline font-bold mb-6">
+          <h5 className="mb-6 font-headline font-bold text-white">
             Newsletter
           </h5>
-          <p className="text-on-surface/50 mb-4 text-xs">
+          <p className="mb-4 text-xs text-on-surface/50">
             Receba insights sobre estrutura de dados e crescimento.
           </p>
           <NewsletterForm />
@@ -94,14 +94,14 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center text-on-surface/40 text-[10px] tracking-widest uppercase gap-4">
+      <div className="mx-auto mt-16 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-outline-variant pt-8 text-[10px] tracking-widest text-on-surface/40 uppercase md:flex-row">
         <div>© 2024 Ciclo - Dados que guiam. Todos os direitos reservados.</div>
         <nav aria-label="Links legais" className="flex gap-8">
           {footerLegalLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="hover:text-white transition-colors"
+              className="transition-colors hover:text-white"
             >
               {link.label}
             </Link>

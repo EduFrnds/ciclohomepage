@@ -1,33 +1,33 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import { navLinks, LOGO_URL } from "@/lib/data/home"
+import { LOGO_URL, navLinks } from "@/lib/data/home"
 
 export function Navbar() {
   return (
     <nav
-      className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/5"
+      className="fixed top-0 z-50 w-full border-b border-white/5 bg-surface/80 backdrop-blur-xl"
       aria-label="Navegação principal"
     >
       <div
-        className="bg-linear-to-r from-primary via-primary-alt to-accent h-0.5 w-full absolute top-0"
+        className="absolute top-0 h-0.5 w-full bg-linear-to-r from-primary via-primary-alt to-accent"
         aria-hidden="true"
       />
-      <div className="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto font-headline tracking-tight">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-4 font-headline tracking-tight">
         <Link href="/" className="flex items-center gap-3">
           <Image
             src={LOGO_URL}
             alt="Ciclo Logo"
             width={40}
             height={40}
-            className="object-contain"
+            className="rounded-lg object-contain"
           />
           <span className="text-xl font-bold tracking-tighter text-white">
             Ciclo - Dados que guiam
           </span>
         </Link>
 
-        <div className="hidden md:flex gap-8" role="list">
+        <div className="hidden gap-8 md:flex" role="list">
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -35,8 +35,8 @@ export function Navbar() {
               role="listitem"
               className={
                 link.active
-                  ? "text-primary font-bold border-b-2 border-primary pb-1"
-                  : "text-on-surface/60 font-medium hover:text-white transition-colors"
+                  ? "border-b-2 border-primary pb-1 font-bold text-primary"
+                  : "font-medium text-on-surface/60 transition-colors hover:text-white"
               }
               aria-current={link.active ? "page" : undefined}
             >
@@ -47,7 +47,7 @@ export function Navbar() {
 
         <a
           href="#contato"
-          className="bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-primary-alt transition-all duration-300 shadow-lg shadow-primary/20"
+          className="rounded-full bg-primary px-6 py-2 font-medium text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:bg-primary-alt"
         >
           Diagnóstico Gratuito
         </a>
