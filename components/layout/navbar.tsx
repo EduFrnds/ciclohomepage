@@ -46,7 +46,7 @@ export function Navbar() {
         </div>
 
         <a
-          href="#contato"
+          href="https://wa.me/5548991584156?text=Ol%C3%A1.%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista%20para%20avaliar%20oportunidades%20de%20melhoria%20na%20gest%C3%A3o%20dos%20nossos%20dados."
           className="rounded-full bg-primary px-6 py-2 font-medium text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:bg-primary-alt"
         >
           Diagnóstico Gratuito
