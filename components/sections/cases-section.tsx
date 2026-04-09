@@ -140,7 +140,7 @@ export function CasesSection() {
           if (!open) setSelectedCase(null)
         }}
       >
-        <DialogContent className="max-w-5xl border border-outline-variant bg-surface-container p-4 text-white md:p-6">
+        <DialogContent className="max-h-[90vh] w-[95vw] max-w-5xl overflow-y-auto border border-outline-variant bg-surface-container p-4 text-white md:p-6">
           {selectedCase && (
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               <div className="relative aspect-video overflow-hidden rounded-2xl border border-outline-variant">
