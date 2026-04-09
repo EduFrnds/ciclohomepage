@@ -1,93 +1,135 @@
-import Image from "next/image"
+"use client"
 
+import Image from "next/image"
+import { useState } from "react"
+
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import { MaterialIcon } from "@/components/ui/material-icon"
 import { HERO_IMAGE_URL } from "@/lib/data/home"
 
 export function HeroSection() {
-  return (
-    <header
-      className="relative pt-32 pb-20 overflow-hidden min-h-screen flex items-center"
-      aria-labelledby="hero-heading"
-    >
-      {/* Background blurs */}
-      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent/10 rounded-full blur-[120px]" />
-      </div>
+  const [openSchedule, setOpenSchedule] = useState(false)
 
-      <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-        {/* Text column */}
-        <div className="lg:col-span-7 flex flex-col gap-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-outline-variant bg-surface-container/50 backdrop-blur-md w-fit">
-            <span
-              className="w-2 h-2 rounded-full bg-[#e0e0e0] animate-pulse"
-              aria-hidden="true"
-            />
-            <span className="text-xs font-label uppercase tracking-widest text-[#e0e0e0]">
-              Inteligência que gera eficiência
-            </span>
+  return (
+    <>
+      <header
+        className="relative flex min-h-screen items-center overflow-hidden pt-32 pb-20"
+        aria-labelledby="hero-heading"
+      >
+        <div
+          className="pointer-events-none absolute inset-0 z-0"
+          aria-hidden="true"
+        >
+          <div className="absolute top-1/4 -left-20 h-96 w-96 rounded-full bg-primary/10 blur-[120px]" />
+          <div className="absolute -right-20 bottom-1/4 h-96 w-96 rounded-full bg-accent/10 blur-[120px]" />
+        </div>
+
+        <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-8 lg:grid-cols-12">
+          <div className="flex flex-col gap-8 lg:col-span-7">
+            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-outline-variant bg-surface-container/50 px-3 py-1 backdrop-blur-md">
+              <span
+                className="h-2 w-2 animate-pulse rounded-full bg-[#e0e0e0]"
+                aria-hidden="true"
+              />
+              <span className="font-label text-xs tracking-widest text-[#e0e0e0] uppercase">
+                Inteligência que gera eficiência
+              </span>
+            </div>
+
+            <h1
+              id="hero-heading"
+              className="font-headline text-5xl leading-[1.1] font-bold tracking-tighter text-white md:text-7xl"
+            >
+              Transformar dados em{" "}
+              <span className="gradient-text">decisões práticas</span> para
+              empresas que querem crescer.
+            </h1>
+
+            <p className="max-w-2xl text-lg leading-relaxed text-on-surface/70 md:text-xl">
+              Elevamos a governança e análise de dados ao nível estratégico.
+              Arquiteturas sob medida para quem exige clareza absoluta e
+              eficiência operacional.
+            </p>
+
+            <div className="flex flex-col gap-4 pt-4 sm:flex-row">
+              <button
+                type="button"
+                onClick={() => setOpenSchedule(true)}
+                className="rounded-full bg-primary px-8 py-4 text-center text-lg font-bold text-white shadow-xl shadow-primary/25 transition-all hover:bg-primary-alt"
+              >
+                Agendar Sessão Estratégica
+              </button>
+
+              <a
+                href="#pilares"
+                className="flex items-center justify-center gap-2 rounded-full border border-outline-variant px-8 py-4 text-lg font-bold text-white backdrop-blur-md transition-colors hover:bg-white/5"
+              >
+                Nossos Fundamentos <MaterialIcon name="arrow_forward" />
+              </a>
+            </div>
           </div>
 
-          <h1
-            id="hero-heading"
-            className="text-5xl md:text-7xl font-headline font-bold leading-[1.1] tracking-tighter text-white"
-          >
-            Transformar dados em{" "}
-            <span className="gradient-text">decisões práticas</span> para
-            empresas que querem crescer.
-          </h1>
+          <div className="relative hidden lg:col-span-5 lg:block">
+            <div className="glass-card aspect-square overflow-hidden rounded-2xl border border-outline-variant p-4">
+              <div className="relative h-full w-full overflow-hidden rounded-xl">
+                <Image
+                  src={HERO_IMAGE_URL}
+                  alt="Visualização de estrutura de dados e arquitetura analítica"
+                  fill
+                  className="object-cover opacity-80 transition-all duration-700 hover:opacity-100"
+                  sizes="(max-width: 1024px) 0px, 40vw"
+                  priority
+                />
+              </div>
+            </div>
 
-          <p className="text-lg md:text-xl text-on-surface/70 max-w-2xl leading-relaxed">
-            Elevamos a governança e análise de dados ao nível estratégico.
-            Arquiteturas sob medida para quem exige clareza absoluta e
-            eficiência operacional.
+            <div
+              className="glass-card absolute -bottom-6 -left-6 rounded-xl border border-outline-variant p-6 shadow-2xl"
+              aria-label="Indicador: 100% Foco em Praticidade"
+            >
+              <div className="font-headline text-4xl font-bold text-primary">
+                100%
+              </div>
+              <div className="font-label text-xs text-on-surface/60 uppercase">
+                Foco em Praticidade
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <Dialog open={openSchedule} onOpenChange={setOpenSchedule}>
+        <DialogContent className="w-full max-w-6xl border border-outline-variant bg-surface-container p-4 text-white md:p-6">
+          <DialogHeader>
+            <DialogTitle className="font-headline text-2xl font-bold text-white">
+              Agendar Sessão Estratégica
+            </DialogTitle>
+          </DialogHeader>
+
+          <p className="text-sm leading-relaxed text-on-surface/70 md:text-base">
+            Escolha o melhor horário para uma sessão estratégica de 30 minutos
+            focada em identificar gargalos, oportunidades e ganhos rápidos na
+            sua operação.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <a
-              href="#contato"
-              className="bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primary-alt transition-all shadow-xl shadow-primary/25 text-center"
-            >
-              Iniciar Diagnóstico
-            </a>
-            <a
-              href="#pilares"
-              className="border border-outline-variant backdrop-blur-md text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/5 transition-colors flex items-center justify-center gap-2"
-            >
-              Nossos Fundamentos{" "}
-              <MaterialIcon name="arrow_forward" />
-            </a>
+          <div className="h-[75vh] min-h-[600px] w-full overflow-hidden rounded-xl">
+            <iframe
+              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1aoQfbOBLDG6oo0CSAoPpnb486TLAN7ZZcLft2N7Qhy7NHFHToyTCoHZVe8SJwZFPtTiPPrPAj?gv=true"
+              style={{ border: 0 }}
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              title="Agendamento de sessão estratégica"
+              className="rounded-xl bg-white"
+            />
           </div>
-        </div>
-
-        {/* Image column */}
-        <div className="lg:col-span-5 relative hidden lg:block">
-          <div className="aspect-square rounded-2xl overflow-hidden glass-card p-4 border border-outline-variant">
-            <div className="relative w-full h-full rounded-xl overflow-hidden">
-              <Image
-                src={HERO_IMAGE_URL}
-                alt="Visualização de estrutura de dados e arquitetura analítica"
-                fill
-                className="object-cover opacity-80 hover:opacity-100 transition-all duration-700"
-                sizes="(max-width: 1024px) 0px, 40vw"
-                priority
-              />
-            </div>
-          </div>
-
-          <div
-            className="absolute -bottom-6 -left-6 glass-card p-6 rounded-xl border border-outline-variant shadow-2xl"
-            aria-label="Indicador: 100% Foco em Praticidade"
-          >
-            <div className="text-4xl font-headline font-bold text-primary">
-              100%
-            </div>
-            <div className="text-xs font-label uppercase text-on-surface/60">
-              Foco em Praticidade
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+        </DialogContent>
+      </Dialog>
+    </>
   )
 }

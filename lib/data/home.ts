@@ -3,7 +3,7 @@ export const navLinks = [
   { href: "#sobre", label: "Nossa Abordagem" },
   { href: "#pilares", label: "Pilares" },
   { href: "#testimonials", label: "Clientes" },
-  { href: "#projetos", label: "Cases" },
+  { href: "#casos", label: "Cases" },
 ]
 
 export interface Pillar {
@@ -80,8 +80,11 @@ export const footerPillarLinks = [
 
 export const footerInstitutionalLinks = [
   { href: "#sobre", label: "Metodologia" },
-  { href: "https://linkedin.com", label: "LinkedIn" },
-  { href: "#projetos", label: "Cases" },
+  {
+    href: "https://www.linkedin.com/in/eduardo-fernandes-938a91139/",
+    label: "LinkedIn",
+  },
+  { href: "#casos", label: "Cases" },
 ]
 
 export const footerLegalLinks = [
