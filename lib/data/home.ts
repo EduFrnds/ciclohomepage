@@ -92,8 +92,7 @@ export const footerLegalLinks = [
   { href: "/termos", label: "Termos" },
 ]
 
-export const LOGO_URL =
-  "https://lh3.googleusercontent.com/aida/ADBb0ugrA1kbBpi-016k7CRqQPIEWPzJ13veCphCSKvs0m7LGyT6TKUJVoXgUmXUcQO9RDRvyKSW4NFA1-tBViIlrpSPRdCsGxELWgEkE8ecuVLWGP5cYhmlytNAXjk6yIjmMLmNKF79Fpc7UYjeKX41agdFVCmYsHEB-J_KxYtR8ShHSUEBSPyQYWFVB8OJAq8Bbr8yEFfAV-4bqD2FJe12DGXgzyo2LMGWjTH7wgZyEV4B69ww8N0f2fOlfuIDXhxdbNqGsoBYgi8NSg"
+export const LOGO_URL = "/ciclologo.png"
 
 export const HERO_IMAGE_URL =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuD5S2b4WvgZ4xBEhJyUphhIhWu71kFazo-HGZaubTwrTHvGT9LdmIXtySAMPoUfKVzNQm_F9kE735EVqwHFqxmEoh3CEnwcBqgX7HTTXOhYBgIlr9i0E1is2LjX2EeKvasLAI28gmFXOREiTzeYr5Kd9_6TjlnLB6KcCwpUZbdfh5VP7L4HA9R1QmRyK8_dr3HP7TZlCm7J8obY1ZbAijOmu0vZAhtI3oULl5TYCGqcaeEyCtJVC0I2IFATqfQiXO2sf2VwrjQxf3Hn"
