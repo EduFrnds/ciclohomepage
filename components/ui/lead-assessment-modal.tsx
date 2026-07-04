@@ -479,7 +479,7 @@ export function LeadAssessmentModal({
             </p>
 
             <a
-              href="/guia-gargalos-dados.pdf"
+              href="/guia-dados.pdf"
               download
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-4 font-bold text-white transition-all hover:bg-primary-alt"
             >
